@@ -2,6 +2,8 @@
 
 namespace OpenSpout\Common\Entity\Style;
 
+use InvalidArgumentException;
+
 /**
  * Represents a style to be applied to a cell.
  */
@@ -93,6 +95,45 @@ class Style
 
     /** @var bool */
     private $isEmpty = true;
+
+    /** @var bool Whether specific cell vertical alignment should be applied */
+    private $shouldApplyCellVerticalAlignment = false;
+
+    /** @var string Cell vertical alignment */
+    private $cellVerticalAlignment;
+
+    /** @var bool Whether the cell vertical alignment property was set */
+    private $hasSetCellVerticalAlignment = false;
+
+    public function getCellVerticalAlignment()
+    {
+        return $this->cellVerticalAlignment;
+    }
+
+    public function setCellVerticalAlignment( $cellVerticalAlignment)
+    {
+        if (!CellVerticalAlignment::isValid($cellVerticalAlignment)) {
+            throw new InvalidArgumentException('Invalid cell vertical alignment value');
+        }
+
+        $this->cellVerticalAlignment = $cellVerticalAlignment;
+        $this->hasSetCellVerticalAlignment = true;
+        $this->shouldApplyCellVerticalAlignment = true;
+        $this->isEmpty = false;
+
+        return $this;
+    }
+
+    public function hasSetCellVerticalAlignment()
+    {
+        return $this->hasSetCellVerticalAlignment;
+    }
+
+
+    public function shouldApplyCellVerticalAlignment()
+    {
+        return $this->shouldApplyCellVerticalAlignment;
+    }
 
     /**
      * @return null|int
