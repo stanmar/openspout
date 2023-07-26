@@ -353,6 +353,7 @@ class StyleManager extends \OpenSpout\Writer\Common\Manager\Style\StyleManager
 
         return '<style:paragraph-properties '
             .$this->getCellAlignmentSectionContent($style)
+            .' fo:vertical-align="center" '
             .'/>';
     }
 
