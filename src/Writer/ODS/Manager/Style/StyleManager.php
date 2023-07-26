@@ -347,12 +347,9 @@ class StyleManager extends \OpenSpout\Writer\Common\Manager\Style\StyleManager
      */
     private function getParagraphPropertiesSectionContent($style)
     {
-        if (!$style->shouldApplyCellAlignment()) {
-            return '';
-        }
-
         return '<style:paragraph-properties '
             .$this->getCellAlignmentSectionContent($style)
+            .' fo:vertical-align="center" '
             .'/>';
     }
 
@@ -390,7 +387,7 @@ class StyleManager extends \OpenSpout\Writer\Common\Manager\Style\StyleManager
                 return 'end';
 
             default:
-                return $cellAlignment;
+                return 'start';
         }
     }
 
