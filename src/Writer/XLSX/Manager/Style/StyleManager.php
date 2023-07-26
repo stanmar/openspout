@@ -259,6 +259,9 @@ class StyleManager extends \OpenSpout\Writer\Common\Manager\Style\StyleManager
                 if ($style->shouldWrapText()) {
                     $content .= ' wrapText="1"';
                 }
+
+                $content .= ' vertical="middle"';
+
                 if ($style->shouldShrinkToFit()) {
                     $content .= ' shrinkToFit="true"';
                 }
